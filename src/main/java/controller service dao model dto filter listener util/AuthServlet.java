@@ -32,8 +32,10 @@ public class AuthServlet extends HttpServlet {
 
         if ("register".equals(action)) {
             register(request, response);
+
         } else if ("login".equals(action)) {
             login(request, response);
+
         } else {
             response.sendError(
                 HttpServletResponse.SC_BAD_REQUEST,
@@ -82,11 +84,11 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            response.getWriter().println(
-                "Login successful! Welcome " + user.getName()
-            );
+            // Login successful → go to Home page
+            response.sendRedirect("home.html");
 
         } else {
+
             response.getWriter().println(
                 "Invalid email or password!"
             );

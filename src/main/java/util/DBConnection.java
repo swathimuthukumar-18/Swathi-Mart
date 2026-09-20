@@ -17,6 +17,9 @@ public class DBConnection {
         config.setUsername("sa");
         config.setPassword("");
 
+        // H2 JDBC Driver
+        config.setDriverClassName("org.h2.Driver");
+
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(2);
 
