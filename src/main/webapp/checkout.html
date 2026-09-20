@@ -1,0 +1,124 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Swathi Mart - Checkout</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🛍️ Swathi Mart - Checkout</h1>
+    </header>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="home.html">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="welcome">
+
+            <h2>Checkout</h2>
+
+            <h3>Order Summary</h3>
+
+            <div id="orderItems"></div>
+
+            <h3 id="total"></h3>
+
+            <br>
+
+            <h3>Delivery Details</h3>
+
+            <input type="text" id="name" placeholder="Enter your name">
+            <br><br>
+
+            <input type="text" id="address" placeholder="Enter delivery address">
+            <br><br>
+
+            <input type="text" id="phone" placeholder="Enter phone number">
+            <br><br>
+
+            <button onclick="placeOrder()">
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let orderItems = document.getElementById("orderItems");
+        let totalElement = document.getElementById("total");
+
+        let total = 0;
+
+        if (cart.length === 0) {
+
+            orderItems.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+        } else {
+
+            cart.forEach(function(item) {
+
+                orderItems.innerHTML +=
+                    "<p><strong>" +
+                    item.name +
+                    "</strong> - ₹" +
+                    item.price +
+                    "</p>";
+
+                total += Number(item.price);
+
+            });
+
+            totalElement.innerHTML =
+                "Total Amount: ₹" + total;
+        }
+
+
+        function placeOrder() {
+
+            let name = document.getElementById("name").value;
+            let address = document.getElementById("address").value;
+            let phone = document.getElementById("phone").value;
+
+
+            if (name === "" || address === "" || phone === "") {
+
+                alert("Please enter all delivery details.");
+
+                return;
+            }
+
+
+            localStorage.removeItem("cart");
+
+
+            alert(
+                "Order placed successfully! Thank you for shopping with Swathi Mart."
+            );
+
+        window.location.href = "order-success.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```

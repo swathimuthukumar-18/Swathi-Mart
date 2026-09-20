@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Swathi Mart - Home</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        color: #333;
+    }
+
+    header {
+        background: linear-gradient(135deg, #2874f0, #1255c5);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 36px;
+    }
+
+    header p {
+        margin: 10px 0 0;
+        font-size: 17px;
+    }
+
+    nav {
+        background: white;
+        padding: 16px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #2874f0;
+        margin: 0 18px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #1255c5;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .welcome {
+        background: white;
+        padding: 35px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .welcome h2 {
+        color: #2874f0;
+        margin-top: 0;
+        font-size: 28px;
+    }
+
+    .welcome p {
+        color: #666;
+        font-size: 17px;
+    }
+
+    .section-title {
+        text-align: center;
+        margin: 40px 0 20px;
+        color: #333;
+    }
+
+    .products {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .product {
+        background: white;
+        width: 280px;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-icon {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .product h3 {
+        color: #2874f0;
+        font-size: 22px;
+        margin: 10px 0;
+    }
+
+    .product p {
+        color: #666;
+        min-height: 45px;
+    }
+
+    .price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #222;
+        margin: 15px 0;
+    }
+
+    .product button {
+        background: #2874f0;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 7px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .product button:hover {
+        background: #1255c5;
+    }
+
+    footer {
+        margin-top: 50px;
+        background: #2874f0;
+        color: white;
+        text-align: center;
+        padding: 18px;
+    }
+
+    @media (max-width: 600px) {
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        .product {
+            width: 100%;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<header>
+    <h1>🛍️ Swathi Mart</h1>
+    <p>Simple • Convenient • Affordable Shopping</p>
+</header>
+
+<nav>
+    <a href="home.html">Home</a>
+    <a href="#products">Products</a>
+    <a href="cart.html">🛒 Cart</a>
+</nav>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Welcome to Swathi Mart 🛒</h2>
+        <p>
+            Your simple and convenient online shopping destination.
+        </p>
+        <p>
+            Explore our products and add your favourites to the cart.
+        </p>
+    </div>
+
+    <h2 class="section-title" id="products">
+        🛍️ Featured Products
+    </h2>
+
+    <div class="products">
+
+        <div class="product">
+            <div class="product-icon">💻</div>
+
+            <h3>Product 1</h3>
+
+            <p>
+                Quality product at an affordable price.
+            </p>
+
+            <div class="price">₹100</div>
+
+            <button onclick="addToCart('Product 1')">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product">
+            <div class="product-icon">📱</div>
+
+            <h3>Product 2</h3>
+
+            <p>
+                Shop your favourite products easily.
+            </p>
+
+            <div class="price">₹200</div>
+
+            <button onclick="addToCart('Product 2')">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product">
+            <div class="product-icon">🎧</div>
+
+            <h3>Product 3</h3>
+
+            <p>
+                Great products for everyday needs.
+            </p>
+
+            <div class="price">₹300</div>
+
+            <button onclick="addToCart('Product 3')">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Swathi Mart | Online Shopping</p>
+</footer>
+
+
+<script>
+
+    function addToCart(productName) {
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let price = 100;
+
+        if (productName === "Product 2") {
+            price = 200;
+        }
+
+        if (productName === "Product 3") {
+            price = 300;
+        }
+
+        cart.push({
+            name: productName,
+            price: price
+        });
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(productName + " added successfully!");
+    }
+
+</script>
+```
+
+</body>
+
+</html>

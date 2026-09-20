@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Swathi Mart - Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>🛍️ Swathi Mart</h1>
+    <h2>Create Account</h2>
+
+    <form action="auth" method="post">
+
+        <input type="hidden" name="action" value="register">
+
+        <label>Name</label>
+        <input type="text"
+               name="name"
+               placeholder="Enter your name"
+               required>
+
+        <label>Email</label>
+        <input type="email"
+               name="email"
+               placeholder="Enter your email"
+               required>
+
+        <label>Password</label>
+        <input type="password"
+               name="password"
+               placeholder="Create a password"
+               required>
+
+        <label>Role</label>
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="BUYER">Buyer</option>
+            <option value="SELLER">Seller</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p>Already have an account?</p>
+
+    <a href="login.html">
+        <button type="button">Login</button>
+    </a>
+
+</div>
+
+</body>
+</html>
