@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Swathi Mart - Admin Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f6f7fb;
+            color: #172554;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #24104f, #17103b);
+            color: white;
+            padding: 25px 15px;
+        }
+
+        .brand {
+            padding: 0 15px 30px;
+        }
+
+        .brand h1 {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .brand p {
+            color: #c8bde5;
+            font-size: 13px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 8px 0;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 16px;
+            color: #ddd6f3;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover,
+        .menu .active {
+            background: linear-gradient(90deg, #7545d8, #6334c8);
+            color: white;
+        }
+
+        .menu-icon {
+            width: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .badge {
+            margin-left: auto;
+            background: #ff5b9d;
+            color: white;
+            min-width: 22px;
+            height: 22px;
+            padding: 3px 7px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #c9bce5;
+            line-height: 1.8;
+            font-size: 13px;
+        }
+
+        .heart {
+            font-size: 25px;
+            color: #ff73ae;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+
+        /* ================= TOP BAR ================= */
+
+        .topbar {
+            height: 82px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .search-box {
+            width: 520px;
+            height: 43px;
+            background: #f7f7fb;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            color: #777;
+        }
+
+        .search-box span {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .notification {
+            font-size: 25px;
+            position: relative;
+        }
+
+        .notification-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff5b9d;
+            border-radius: 50%;
+            right: 0;
+            top: 2px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7545d8, #5c2fc0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .profile-text {
+            font-size: 13px;
+        }
+
+        .profile-text strong {
+            font-size: 14px;
+        }
+
+        .profile-text small {
+            color: #777;
+        }
+
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 30px 35px;
+        }
+
+        .welcome-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            font-size: 26px;
+            margin-bottom: 7px;
+        }
+
+        .welcome p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .date-box {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid #eeeeee;
+            font-size: 14px;
+        }
+
+
+        /* ================= STAT CARDS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            border-radius: 12px;
+            min-height: 155px;
+        }
+
+        .purple-card {
+            background: #f0edff;
+        }
+
+        .pink-card {
+            background: #fff0f6;
+        }
+
+        .green-card {
+            background: #eafaf2;
+        }
+
+        .blue-card {
+            background: #edf5ff;
+        }
+
+        .yellow-card {
+            background: #fff8e9;
+        }
+
+        .stat-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 21px;
+            margin-bottom: 14px;
+            background: white;
+        }
+
+        .stat-card h4 {
+            color: #27304a;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: bold;
+            color: #101b42;
+            margin-bottom: 7px;
+        }
+
+        .growth {
+            color: #20a464;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .growth-text {
+            color: #777;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+
+        /* ================= MIDDLE SECTION ================= */
+
+        .middle {
+            display: grid;
+            grid-template-columns: 1.5fr 0.9fr 0.9fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #eeeeee;
+            padding: 18px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .panel-header h3 {
+            font-size: 16px;
+        }
+
+        .select {
+            border: 1px solid #eeeeee;
+            background: white;
+            padding: 7px 10px;
+            border-radius: 7px;
+            font-size: 12px;
+        }
+
+
+        /* ================= SALES CHART ================= */
+
+        .chart {
+            height: 210px;
+            position: relative;
+            padding: 10px 10px 30px 35px;
+        }
+
+        .chart-lines {
+            position: absolute;
+            left: 35px;
+            right: 10px;
+            top: 10px;
+            bottom: 35px;
+            background:
+                linear-gradient(to bottom,
+                transparent 24%,
+                #eeeeee 25%,
+                transparent 26%,
+                transparent 49%,
+                #eeeeee 50%,
+                transparent 51%,
+                transparent 74%,
+                #eeeeee 75%,
+                transparent 76%);
+        }
+
+        .chart svg {
+            position: absolute;
+            left: 35px;
+            right: 10px;
+            top: 10px;
+            width: calc(100% - 45px);
+            height: 165px;
+        }
+
+        .chart-labels {
+            position: absolute;
+            bottom: 0;
+            left: 35px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 10px;
+        }
+
+
+        /* ================= CATEGORY ================= */
+
+        .category-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .donut {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #7545d8 0% 27%,
+                #e86ba8 27% 50%,
+                #55a2e8 50% 67%,
+                #69cfa5 67% 80%,
+                #f4a75d 80% 90%,
+                #ee739e 90% 96%,
+                #d75d9b 96% 100%
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .donut-inner {
+            width: 82px;
+            height: 82px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .category-list {
+            list-style: none;
+            font-size: 11px;
+            line-height: 2.1;
+        }
+
+        .category-list li {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot1 { background: #7545d8; }
+        .dot2 { background: #e86ba8; }
+        .dot3 { background: #55a2e8; }
+        .dot4 { background: #69cfa5; }
+        .dot5 { background: #f4a75d; }
+        .dot6 { background: #ee739e; }
+        .dot7 { background: #d75d9b; }
+
+
+        /* ================= ORDERS ================= */
+
+        .orders {
+            max-height: 260px;
+            overflow: hidden;
+        }
+
+        .order {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .order-image {
+            width: 38px;
+            height: 38px;
+            border-radius: 7px;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .order-info {
+            flex: 1;
+            font-size: 11px;
+        }
+
+        .order-info strong {
+            display: block;
+            font-size: 11px;
+            color: #172554;
+            margin-bottom: 3px;
+        }
+
+        .order-info span {
+            color: #777;
+        }
+
+        .status {
+            padding: 5px 8px;
+            border-radius: 7px;
+            font-size: 9px;
+        }
+
+        .processing {
+            background: #fff2d8;
+            color: #d58a00;
+        }
+
+        .shipped {
+            background: #e8f1ff;
+            color: #2876d6;
+        }
+
+        .delivered {
+            background: #e4f8ed;
+            color: #24915b;
+        }
+
+
+        /* ================= LATEST PRODUCTS ================= */
+
+        .latest-panel {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #eeeeee;
+            padding: 18px;
+        }
+
+        .view-all {
+            color: #5d39c8;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        th {
+            background: #f6f7fb;
+            text-align: left;
+            padding: 11px 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid #eeeeee;
+            color: #333;
+        }
+
+        .product-img {
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            background: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 19px;
+        }
+
+        .stock {
+            background: #e4f8ed;
+            color: #24915b;
+            padding: 5px 8px;
+            border-radius: 7px;
+            font-size: 10px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1200px) {
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .middle {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                width: 75px;
+            }
+
+            .brand h1,
+            .brand p,
+            .menu a span:not(.menu-icon),
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .main {
+                margin-left: 75px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .middle {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .search-box {
+                width: 180px;
+            }
+
+            .profile-text {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                min-width: 700px;
+            }
+
+            .latest-panel {
+                overflow-x: auto;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="brand">
+        <h1>🛍️ Swathi Mart</h1>
+        <p>Admin Dashboard</p>
+    </div>
+
+
+    <ul class="menu">
+
+        <li>
+            <a href="#" class="active">
+                <span class="menu-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="menu-icon">📦</span>
+                <span>Products</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="menu-icon">📋</span>
+                <span>Orders</span>
+                <span class="badge">3</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="menu-icon">👥</span>
+                <span>Customers</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="menu-icon">▦</span>
+                <span>Categories</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="menu-icon">🛒</span>
+                <span>Cart</span>
+                <span class="badge">2</span>
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="sidebar-bottom">
+        <div class="heart">♥</div>
+        Shop Smart<br>
+        Shop Happy
+    </div>
+
+</div>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="search-box">
+            <span>⌕</span>
+            <input
+                type="text"
+                placeholder="Search products, orders, customers...">
+        </div>
+
+
+        <div class="top-right">
+
+            <div class="notification">
+                ♧
+                <span class="notification-dot"></span>
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-circle">
+                    S
+                </div>
+
+                <div class="profile-text">
+                    Welcome back,<br>
+                    <strong>Swathi! 👋</strong><br>
+                    <small>Admin⌄</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome-row">
+
+            <div class="welcome">
+                <h2>Welcome back, Swathi! 👋</h2>
+                <p>Here's what's happening with your store today.</p>
+            </div>
+
+            <div class="date-box">
+                📅 <span id="currentDate"></span>
+            </div>
+
+        </div>
+
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card purple-card">
+
+                <div class="stat-icon">📦</div>
+
+                <h4>Total Products</h4>
+
+                <div class="stat-number">512</div>
+
+                <div class="growth">↑ 12%</div>
+
+                <div class="growth-text">
+                    from last week
+                </div>
+
+            </div>
+
+
+            <div class="stat-card pink-card">
+
+                <div class="stat-icon">🛒</div>
+
+                <h4>Orders</h4>
+
+                <div class="stat-number">156</div>
+
+                <div class="growth">↑ 8%</div>
+
+                <div class="growth-text">
+                    from last week
+                </div>
+
+            </div>
+
+
+            <div class="stat-card green-card">
+
+                <div class="stat-icon">₹</div>
+
+                <h4>Sales</h4>
+
+                <div class="stat-number">₹3,45,000</div>
+
+                <div class="growth">↑ 15%</div>
+
+                <div class="growth-text">
+                    from last week
+                </div>
+
+            </div>
+
+
+            <div class="stat-card blue-card">
+
+                <div class="stat-icon">👥</div>
+
+                <h4>Customers</h4>
+
+                <div class="stat-number">680</div>
+
+                <div class="growth">↑ 10%</div>
+
+                <div class="growth-text">
+                    from last week
+                </div>
+
+            </div>
+
+
+            <div class="stat-card yellow-card">
+
+                <div class="stat-icon">☆</div>
+
+                <h4>Reviews</h4>
+
+                <div class="stat-number">4.8/5</div>
+
+                <div class="growth">↑ 0.2</div>
+
+                <div class="growth-text">
+                    from last week
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MIDDLE -->
+
+        <div class="middle">
+
+
+            <!-- SALES OVERVIEW -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Sales Overview</h3>
+
+                    <select class="select">
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Last 3 Months</option>
+                    </select>
+                </div>
+
+
+                <div class="chart">
+
+                    <div class="chart-lines"></div>
+
+                    <svg viewBox="0 0 600 180"
+                         preserveAspectRatio="none">
+
+                        <defs>
+                            <linearGradient
+                                id="areaGradient"
+                                x1="0"
+                                x2="0"
+                                y1="0"
+                                y2="1">
+
+                                <stop
+                                    offset="0%"
+                                    stop-color="#8c5be8"
+                                    stop-opacity="0.30"/>
+
+                                <stop
+                                    offset="100%"
+                                    stop-color="#8c5be8"
+                                    stop-opacity="0.02"/>
+
+                            </linearGradient>
+                        </defs>
+
+
+                        <path
+                            d="M0,135
+                               C70,125 90,115 150,110
+                               C200,103 220,90 260,100
+                               C310,115 335,78 390,75
+                               C440,72 460,42 510,35
+                               C550,32 570,45 600,40
+                               L600,180
+                               L0,180 Z"
+                            fill="url(#areaGradient)">
+                        </path>
+
+
+                        <path
+                            d="M0,135
+                               C70,125 90,115 150,110
+                               C200,103 220,90 260,100
+                               C310,115 335,78 390,75
+                               C440,72 460,42 510,35
+                               C550,32 570,45 600,40"
+                            fill="none"
+                            stroke="#7545d8"
+                            stroke-width="3">
+                        </path>
+
+
+                        <circle cx="0" cy="135" r="4" fill="#7545d8"/>
+                        <circle cx="150" cy="110" r="4" fill="#7545d8"/>
+                        <circle cx="260" cy="100" r="4" fill="#7545d8"/>
+                        <circle cx="390" cy="75" r="4" fill="#7545d8"/>
+                        <circle cx="510" cy="35" r="4" fill="#7545d8"/>
+                        <circle cx="600" cy="40" r="4" fill="#7545d8"/>
+
+                    </svg>
+
+
+                    <div class="chart-labels">
+                        <span>Sep 30</span>
+                        <span>Oct 1</span>
+                        <span>Oct 2</span>
+                        <span>Oct 3</span>
+                        <span>Oct 4</span>
+                        <span>Oct 5</span>
+                        <span>Oct 6</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOP CATEGORIES -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Top Categories</h3>
+                </div>
+
+
+                <div class="category-content">
+
+                    <div class="donut">
+
+                        <div class="donut-inner">
+                            <div>
+                                Total<br>
+                                <strong>512</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <ul class="category-list">
+
+                        <li>
+                            <span class="dot dot1"></span>
+                            Men 138
+                        </li>
+
+                        <li>
+                            <span class="dot dot2"></span>
+                            Women 120
+                        </li>
+
+                        <li>
+                            <span class="dot dot3"></span>
+                            Kids 85
+                        </li>
+
+                        <li>
+                            <span class="dot dot4"></span>
+                            Dresses 64
+                        </li>
+
+                        <li>
+                            <span class="dot dot5"></span>
+                            Tops 52
+                        </li>
+
+                        <li>
+                            <span class="dot dot6"></span>
+                            Footwear 38
+                        </li>
+
+                        <li>
+                            <span class="dot dot7"></span>
+                            Bags 15
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RECENT ORDERS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Recent Orders</h3>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+
+
+                <div class="orders">
+
+
+                    <div class="order">
+
+                        <div class="order-image">📱</div>
+
+                        <div class="order-info">
+                            <strong>#ORD1025</strong>
+                            <span>Priya S</span><br>
+                            <b>₹2,499</b>
+                        </div>
+
+                        <span class="status processing">
+                            Processing
+                        </span>
+
+                    </div>
+
+
+                    <div class="order">
+
+                        <div class="order-image">👟</div>
+
+                        <div class="order-info">
+                            <strong>#ORD1024</strong>
+                            <span>Kavya R</span><br>
+                            <b>₹1,299</b>
+                        </div>
+
+                        <span class="status shipped">
+                            Shipped
+                        </span>
+
+                    </div>
+
+
+                    <div class="order">
+
+                        <div class="order-image">🎒</div>
+
+                        <div class="order-info">
+                            <strong>#ORD1023</strong>
+                            <span>Anitha M</span><br>
+                            <b>₹3,780</b>
+                        </div>
+
+                        <span class="status delivered">
+                            Delivered
+                        </span>
+
+                    </div>
+
+
+                    <div class="order">
+
+                        <div class="order-image">👗</div>
+
+                        <div class="order-info">
+                            <strong>#ORD1022</strong>
+                            <span>Sneha P</span><br>
+                            <b>₹899</b>
+                        </div>
+
+                        <span class="status processing">
+                            Processing
+                        </span>
+
+                    </div>
+
+
+                    <div class="order">
+
+                        <div class="order-image">👕</div>
+
+                        <div class="order-info">
+                            <strong>#ORD1021</strong>
+                            <span>Divya K</span><br>
+                            <b>₹599</b>
+                        </div>
+
+                        <span class="status delivered">
+                            Delivered
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= LATEST PRODUCTS ================= -->
+
+        <div class="latest-panel">
+
+            <div class="panel-header">
+
+                <h3>Latest Products</h3>
+
+                <a href="#" class="view-all">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="product-img">📱</div>
+                        </td>
+
+                        <td>iPhone 15</td>
+
+                        <td>Electronics</td>
+
+                        <td>₹79,999</td>
+
+                        <td>12</td>
+
+                        <td>
+                            <span class="stock">In Stock</span>
+                        </td>
+
+                        <td>Oct 6, 2026</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="product-img">👟</div>
+                        </td>
+
+                        <td>Nike Running Shoes</td>
+
+                        <td>Footwear</td>
+
+                        <td>₹4,999</td>
+
+                        <td>24</td>
+
+                        <td>
+                            <span class="stock">In Stock</span>
+                        </td>
+
+                        <td>Oct 6, 2026</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="product-img">👗</div>
+                        </td>
+
+                        <td>Floral Dress</td>
+
+                        <td>Dresses</td>
+
+                        <td>₹1,299</td>
+
+                        <td>18</td>
+
+                        <td>
+                            <span class="stock">In Stock</span>
+                        </td>
+
+                        <td>Oct 6, 2026</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="product-img">🎒</div>
+                        </td>
+
+                        <td>Backpack</td>
+
+                        <td>Bags</td>
+
+                        <td>₹899</td>
+
+                        <td>30</td>
+
+                        <td>
+                            <span class="stock">In Stock</span>
+                        </td>
+
+                        <td>Oct 5, 2026</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="product-img">👕</div>
+                        </td>
+
+                        <td>Men's T-shirt</td>
+
+                        <td>Tops</td>
+
+                        <td>₹599</td>
+
+                        <td>40</td>
+
+                        <td>
+                            <span class="stock">In Stock</span>
+                        </td>
+
+                        <td>Oct 4, 2026</td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    const today = new Date();
+
+    const options = {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    };
+
+    document.getElementById("currentDate").textContent =
+        today.toLocaleDateString("en-US", options);
+
+</script>
+
+
+</body>
+</html>
